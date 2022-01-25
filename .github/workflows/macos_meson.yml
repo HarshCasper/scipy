@@ -94,6 +94,10 @@ jobs:
       run: |
         conda activate scipy-meson
         python -m pip install meson==0.61.1
+        # Python.org installers still use 10.9, so let's use that too. Note
+        # that scikit-learn already changed to 10.13 in Jan 2021, so increasing
+        # this number in the future (if needed) should not be a problem.
+        export MACOSX_DEPLOYMENT_TARGET=10.9
         CC="ccache $CC" python dev.py -j 2 --build-only
 
     - name: Test SciPy
